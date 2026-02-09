@@ -6,22 +6,37 @@ from src.product import Product
 
 @pytest.fixture
 def product_my():
-    return Product("Название продукта", "Описание продукта", 99.99, 5)
+    return Product("Продукт1", "Описание1", 0, 2)
 
 
 @pytest.fixture
 def product_my_2():
-    return Product(1, 2, 3, 4)
+    return Product("Продукт2", "Описание2", 10, 6)
+
+
+@pytest.fixture
+def product_my_3():
+    return Product("Продукт1", "Описание1", 15, 10)
 
 
 @pytest.fixture
 def category_my(product_my, product_my_2):
-    return Category("Название категории", "Описание категории", [product_my, product_my_2])
+    return Category("Категория1", "Описание1", [product_my, product_my_2])
 
 
 @pytest.fixture
 def category_my_2():
-    return Category("Название категории2", "Описание категории2", None)
+    return Category("Категория2", "Описание2", [])
+
+
+@pytest.fixture
+def category_my_3(product_my, product_my_2, product_my_3):
+    return Category("Название категории", "Описание категории", [product_my, product_my_2, product_my_3])
+
+
+@pytest.fixture
+def category_my_4(product_my_3, product_my_2, product_my):
+    return Category("Название категории", "Описание категории", [product_my_3, product_my_2, product_my])
 
 
 @pytest.fixture
@@ -41,3 +56,8 @@ def all_categories():
             "products": [{"name": 31, "description": 32, "price": 33, "quantity": 34}],
         },
     ]
+
+
+@pytest.fixture
+def dict_product():
+    return {"name": "Продукт3", "description": "Описание3", "price": 99, "quantity": 88}

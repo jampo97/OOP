@@ -10,5 +10,38 @@ class Product:
         """Инициализация элемента класса"""
         self.name = name
         self.description = description
-        self.price = price
+        self.__price = price
         self.quantity = quantity
+
+    @property
+    def price(self):
+        """Геттер для атрибута «цена»"""
+
+        float_price = self.__price
+        return float_price
+
+    @price.setter
+    def price(self, new_price: float):
+        """Сеттер для атрибута «цена»"""
+        if new_price <= 0:
+            print("Цена не должна быть нулевая или отрицательная")
+            return
+        elif self.__price < new_price:
+            user_input = input("Цена уменьшилась. все верно?Y/N")
+            if user_input == "Y":
+                self.__price
+            else:
+                self.__price = new_price
+
+    @classmethod
+    def new_product(cls, new_prod: dict):
+        """Создает новый экземпляр на основе словаря"""
+
+        return cls(new_prod["name"], new_prod["description"], new_prod["price"], new_prod["quantity"])
+
+    def del_product(self):
+        """Обнуление значений экземпляра"""
+        self.name = None
+        self.description = None
+        self.__price = 0
+        self.quantity = None

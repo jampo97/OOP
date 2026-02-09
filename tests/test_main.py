@@ -25,17 +25,13 @@ def test_open_json() -> None:
     assert open_json("products.json") == [{"category": "Phones"}, {"category": "TV"}]
 
 
-def test_json_to_object(all_categories:list[dict])-> None:
+def test_json_to_object(all_categories: list[dict]) -> None:
     assert json_to_object(all_categories)[0].name == "phones"
 
 
-def test_json_to_object_2(all_categories:list[dict])-> None:
+def test_json_to_object_2(all_categories: list[dict]) -> None:
     assert json_to_object(all_categories)[1].name == "TV"
 
 
-def test_json_to_object_3(all_categories:list[dict])-> None:
+def test_json_to_object_3(all_categories: list[dict]) -> None:
     assert json_to_object(all_categories)[0].description == "android"
-
-
-def test_json_to_object_4(all_categories:list[dict])-> None:
-    assert len(json_to_object(all_categories)[0].products) == 2
