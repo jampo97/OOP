@@ -10,6 +10,7 @@ def test_product(product_my) -> None:
     assert product_my.quantity == 2
 
 
+
 def test_product_new_price_lower(product_my_2) -> None:
     product_my_2.price = 4
     assert product_my_2.price == 10
@@ -45,3 +46,11 @@ def test_del_product(product_my) -> None:
     assert product_my.description is None
     assert product_my.price == 0
     assert product_my.quantity is None
+
+
+def test_product_str(product_my) -> None:
+    assert str(product_my) == "Продукт1 0 руб. Остаток: 2 шт."
+
+
+def test_product_add(product_my_2,product_my_3) -> None:
+    assert product_my_2+product_my_3 == 210

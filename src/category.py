@@ -48,13 +48,17 @@ class Category:
         else:
             Category.product_count += 0
 
+    def __str__(self):
+        return f"{self.name}, количество продуктов: {len(self.__products)} шт."
+
+
     @property
     def products(self):
         """Геттер для приватного атрибута products"""
 
         new_string = ""
         for product in self.__products:
-            new_string += f"Название продукта - {product.name}, {product.price} руб. Остаток: {product.quantity} шт."
+            new_string += f"{str(product)}\n"
         return new_string
 
     def add_product(self, product):

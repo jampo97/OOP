@@ -1,6 +1,7 @@
 import pytest
 
 from src.category import Category, sum_products_class, sum_products_json
+from src.product_iterator import ProductIterator
 
 
 @pytest.fixture
@@ -16,7 +17,7 @@ def test_category_2(category_my, category_my_2) -> None:
     assert category_my.description == "Описание1"
     assert category_my_2.description == "Описание2"
     assert category_my.products == (
-        "Название продукта - Продукт1, 0 руб. Остаток: 2 шт." "Название продукта - Продукт2, 10 руб. Остаток: 6 шт."
+        "Продукт1 0 руб. Остаток: 2 шт.\n" "Продукт2 10 руб. Остаток: 6 шт.\n"
     )
     assert Category.category_count == 2
     assert Category.product_count == 2
@@ -24,7 +25,7 @@ def test_category_2(category_my, category_my_2) -> None:
 
 def test_category_repeated_name(category_my_3) -> None:
     assert category_my_3.products == (
-        "Название продукта - Продукт2, 10 руб. Остаток: 6 шт." "Название продукта - Продукт1, 15 руб. Остаток: 12 шт."
+        "Продукт2 10 руб. Остаток: 6 шт.\n" "Продукт1 15 руб. Остаток: 12 шт.\n"
     )
 
 
@@ -55,3 +56,11 @@ def test_sum_products_class_err(product_my, product_my_2) -> None:
     with pytest.raises(AttributeError) as exc_info:
         sum_products_class([{}, {}])
     assert "'dict' object has no attribute 'quantity'" in str(exc_info.value)
+
+def test_category_str(category_my) -> None:
+    assert str(category_my) == "Категория1, количество продуктов: 2 шт."
+
+def test_product_iterator(product_iterator):
+    assert product_iterator.index == -1
+    assert next(product_iterator) == "Продукт2 10 руб. Остаток: 6 шт."
+    assert next(product_iterator) == "Продукт1 15 руб. Остаток: 12 шт."

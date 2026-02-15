@@ -13,6 +13,14 @@ class Product:
         self.__price = price
         self.quantity = quantity
 
+    def __str__(self):
+        """ Oтображениe информации об объекте класса для пользователей"""
+        return f"{self.name} {self.price} руб. Остаток: {self.quantity} шт."
+
+    def __add__(self, other):
+        """ Полная стоимость 2 товаров на складе"""
+        return (self.__price * self.quantity) + (other.__price * other.quantity)
+
     @property
     def price(self):
         """Геттер для атрибута «цена»"""
