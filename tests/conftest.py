@@ -63,6 +63,12 @@ def all_categories():
 def dict_product():
     return {"name": "Продукт3", "description": "Описание3", "price": 99, "quantity": 88}
 
+
 @pytest.fixture
 def product_iterator(category_my_3):
     return ProductIterator(category_my_3)
+
+
+@pytest.fixture
+def product_iterator_none(category_my_2):
+    return ProductIterator(category_my_2)
