@@ -1,8 +1,10 @@
 import pytest
 
 from src.category import Category
+from src.lawn_grass import LawnGrass
 from src.product import Product
 from src.product_iterator import ProductIterator
+from src.smartphones import Smartphone
 
 
 @pytest.fixture
@@ -72,3 +74,13 @@ def product_iterator(category_my_3):
 @pytest.fixture
 def product_iterator_none(category_my_2):
     return ProductIterator(category_my_2)
+
+
+@pytest.fixture
+def smartphone():
+    return Smartphone("Название смартфона", "Описание", 999.99, 10, 99.9, "Модель смартфона", 64, "White")
+
+
+@pytest.fixture
+def lawn_grass():
+    return LawnGrass("Название травы", "Описание", 999.99, 10, "Россия", "Лето", "Зеленый цвет")

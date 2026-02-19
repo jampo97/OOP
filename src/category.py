@@ -1,5 +1,7 @@
 from typing import Optional
 
+from src.product import Product
+
 
 class Category:
     """Класс с описанием категории продуктов"""
@@ -49,7 +51,8 @@ class Category:
             Category.product_count += 0
 
     def __str__(self):
-        return f"{self.name}, количество продуктов: {sum_products_class(self.__products)} шт."
+        all_products = sum(product.quantity for product in self.__products)
+        return f"{self.name}, количество продуктов: {all_products} шт."
 
     @property
     def products(self):
@@ -62,17 +65,8 @@ class Category:
 
     def add_product(self, product):
         """Добавление продукта в атрибут products"""
-        Category.product_count += 1 if product else print("error")
-        self.__products.append(product)
-
-
-def sum_products_json(products: list[Optional[dict]]) -> int:
-    """Общее количество товаров в данной категории(для json)"""
-
-    return sum(pr["quantity"] for pr in products)
-
-
-def sum_products_class(products: list[Optional[dict]]) -> int:
-    """Общее количество товаров в данной категории(для Class)"""
-
-    return sum(pr.quantity for pr in products)
+        if isinstance(product, Product):
+            Category.product_count += 1 if product else print("error")
+            self.__products.append(product)
+        else:
+            raise TypeError

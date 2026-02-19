@@ -19,7 +19,10 @@ class Product:
 
     def __add__(self, other):
         """Полная стоимость 2 товаров на складе"""
-        return (self.__price * self.quantity) + (other.__price * other.quantity)
+        if type(other) is type(self):
+            return (self.__price * self.quantity) + (other.__price * other.quantity)
+        else:
+            raise TypeError
 
     @property
     def price(self):
@@ -44,7 +47,6 @@ class Product:
     @classmethod
     def new_product(cls, new_prod: dict):
         """Создает новый экземпляр на основе словаря"""
-
         return cls(new_prod["name"], new_prod["description"], new_prod["price"], new_prod["quantity"])
 
     def del_product(self):
