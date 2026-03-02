@@ -10,6 +10,12 @@ def test_product(product_my) -> None:
     assert product_my.quantity == 2
 
 
+def test_product_err() -> None:
+    """Тест действие при понижении цены до нуля и ниже"""
+    with pytest.raises(ValueError):
+        Product("Продукт", "Описание", 3, 0)
+
+
 def test_smartphone(smartphone) -> None:
     assert smartphone.name == "Название смартфона"
     assert smartphone.description == "Описание"

@@ -65,8 +65,22 @@ class Category:
 
     def add_product(self, product):
         """Добавление продукта в атрибут products"""
+
         if isinstance(product, Product):
             Category.product_count += 1 if product else print("error")
             self.__products.append(product)
         else:
             raise TypeError
+
+    def middle_price(self):
+        """Подсчет средней цены товаров в категории"""
+
+        all_products = sum(product.quantity for product in self.__products)
+        all_price = sum(product.price * product.quantity for product in self.__products)
+        try:
+            res = all_price / all_products
+        except ZeroDivisionError:
+            print("Цена всех продуктов равна 0")
+            return 0
+        else:
+            return res

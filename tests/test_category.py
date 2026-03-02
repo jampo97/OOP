@@ -43,3 +43,20 @@ def test_category_smart_add_new_err(category_my) -> None:
     """Тест выявление ошибки при добавлении продукта не входящего в класс продуктов и дочерних"""
     with pytest.raises(TypeError):
         category_my.add_product("Not a product")
+
+
+def test_category_middle_price(category_my):
+    """Тест средняя цена категории"""
+    assert category_my.middle_price() == 7.5
+
+
+def test_category_middle_price_err_text(category_my_2, capsys):
+    """Тест ошибка ввода при определении средней цены категории"""
+    print(category_my_2.middle_price())
+    captured = capsys.readouterr()
+    assert "Цена всех продуктов равна 0" in captured.out
+
+
+def test_category_middle_price_err(category_my_2):
+    """Тест ошибка ввода при определении средней цены категории"""
+    assert category_my_2.middle_price() == 0

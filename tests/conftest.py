@@ -23,6 +23,11 @@ def product_my_3():
 
 
 @pytest.fixture
+def product_my_4():
+    return Product("Продукт4", "Описание4", 3, 0)
+
+
+@pytest.fixture
 def category_my(product_my, product_my_2):
     return Category("Категория1", "Описание1", [product_my, product_my_2])
 
